@@ -32,4 +32,5 @@ export const clearLoader = () => // delete 'loader' before find results
     if (loader)
     {
         loader.parentElement.removeChild(loader);
-    }}
+    }
+}
