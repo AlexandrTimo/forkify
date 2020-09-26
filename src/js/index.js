@@ -36,11 +36,25 @@ const controlSearch = async () =>
         clearLoader(); // delete 'loader'
         searchView.searchResults(state.search.recipes);
     }
-}
+};
 
-
+// event for 'Search'
 elements.searchForm.addEventListener('submit', e => 
 {
     e.preventDefault();
     controlSearch();
 });
+
+// event for use 'button pages'
+elements.searchButtomPage.addEventListener('click', e =>
+{
+    const btn = e.target.closest('.btn-inline'); // with method 'closest()' it help to find blizhyshee sovpadenie with class '.btn-inline'
+    if (btn){
+        const goToPage = parseInt(btn.dataset.goto, 10); // nahodim with help 'dataset' chemu rovna variable 'goto' + converting 'String' into 'Integer' 
+        console.log(goToPage); //test
+        searchView.clearResults(); // clear results before show new info
+        searchView.searchResults(state.search.recipes, goToPage); // new info with - 'goToPage' variable.
+    }
+    
+    
+})

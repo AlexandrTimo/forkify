@@ -4,7 +4,8 @@ export const elements = {
     searchForm: document.querySelector('.search'), //Button
     searchInput: document.querySelector('.search__field'), //input line 
     searchRes: document.querySelector('.results'), // parent element of left side of our web sait
-    searchResList: document.querySelector('.results__list') //left side (result)
+    searchResList: document.querySelector('.results__list'), //left side (result)
+    searchButtomPage: document.querySelector('.results__pages') // button 'next' and 'prev'
 };
 
 //**

@@ -13,6 +13,7 @@ export const clearInput = () =>
 export const clearResults = () =>
 {
     elements.searchResList.innerHTML = ''; // Udalenie info from result list
+    elements.searchButtomPage.innerHTML = ''; // Udalenie buttons result list
 }
 
 
@@ -63,9 +64,51 @@ const impResult = recipe =>
     elements.searchResList.insertAdjacentHTML('beforeend', markup); // kuda vivesti result
 };
 
+// html code of 'button pages'
+//type: 'prev' or 'next' 
+const createBtn = (page, type) =>`
+
+    <button class="btn-inline results__btn--${type}" data-goto=${type === 'prev' ? page - 1 : page + 1}>
+        <span>Page ${type === 'prev' ? page - 1 : page + 1}</span>
+        <svg class="search__icon">
+            <use href="img/icons.svg#icon-triangle-${type === 'prev' ? 'left' : 'right'}"></use>
+        </svg>
+
+`;
+
+// find kol-vo pages and show button if cur = 1, 2, 3 
+const renderButtons = (page, numResult, resPerPage) => 
+{
+    const pages = Math.ceil(numResult / resPerPage);
+    let button;
+
+    if (page === 1 && pages > 1){
+        // Show button 'next' on the right
+        button = createBtn(page, 'next');
+    }
+    else if (page < pages){
+        // Show both buttons
+        button = ` 
+            ${createBtn(page,'next')}
+            ${createBtn(page,'prev')}
+        `;
+    }
+    else if (page === pages && pages > 1){
+        // Show 'prev' button on the left
+        button = createBtn(page,'prev'); 
+    }
+
+    elements.searchButtomPage.insertAdjacentHTML('afterbegin', button);
+};
 
 //**
-export const searchResults = recipes =>
+export const searchResults = (recipes, page = 1, resPerPage = 10) =>
 {
-    recipes.forEach(impResult); //kazhdiy element in the array provesti via 'impResult'
+    // Render results of current page
+    const start = (page - 1) * resPerPage;// raschet pages with method 'slice()'
+    const end = page * resPerPage;
+    recipes.slice(start, end).forEach(impResult); //kazhdiy element in the array provesti via 'impResult'
+
+    // Render pagination results after 'click' a button 'next' or 'prev'
+    renderButtons(page, recipes.length, resPerPage);
 };
