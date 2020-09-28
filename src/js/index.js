@@ -95,6 +95,10 @@ const controlRecipe = async () =>
         {
             // Get result from getRecipe
             await state.recipe.getRecipe();
+            console.log(state.recipe.ingredients);
+
+            // Parse ingredients (conveting)
+            state.recipe.parseIngredients();
 
             // Calculate Serving and Time
             state.recipe.calcTime();
@@ -103,6 +107,7 @@ const controlRecipe = async () =>
             // show Result
             console.log(state.recipe);
             
+
         }
         catch(error)
         {
