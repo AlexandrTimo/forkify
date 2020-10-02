@@ -14,7 +14,7 @@ export default class Recipe {
             //console.log(res);
             // add new info inside new object 
             this.title = res.data.recipe.title;
-            this.autor = res.data.recipe.publisher;
+            this.author = res.data.recipe.publisher;
             this.ingredients = res.data.recipe.ingredients;
             this.img = res.data.recipe.image_url;
             this.url = res.data.recipe.source_url;
@@ -42,8 +42,10 @@ export default class Recipe {
 
     parseIngredients ()
     {
+        // Correction ingredients of recipe and divide array ingredient as 'count' 'unit' 'ingredient'
         const unitsLong = ['tablespoons', 'tablespoon', 'teaspoons', 'teaspoon', 'onces', 'once', 'cups', 'pounds'];
         const unitsShort = ['tbsp', 'tbsp', 'tsp', 'tsp', 'oz', 'oz', 'cup', 'pound'];
+        const units = [...unitsShort, 'kg', 'g']; // extra units
 
         const newIngredient = this.ingredients.map(el =>
             {
@@ -62,7 +64,7 @@ export default class Recipe {
                 const arrIng = ingredient.split(' ');
 
                 //poisk matching of units (ex:'tbsp') in arrays: 'arrIng' and 'unitsShort' and return index of matching
-                const unitIndex = arrIng.findIndex(el2 => unitsShort.includes(el2)); 
+                const unitIndex = arrIng.findIndex(el2 => units.includes(el2)); 
 
                 //Ex: [1, 1/2 , cup, milk] / [1, cup, milk]
                 //Ex: [3, milk]

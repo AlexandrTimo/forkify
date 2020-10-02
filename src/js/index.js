@@ -1,5 +1,6 @@
 import Search from './models/Search';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 import { elements, searchLoader, clearLoader } from './views/base';
 import Recipe from './models/Recipe';
 
@@ -86,6 +87,8 @@ const controlRecipe = async () =>
     if (id)
     {
         // UI Prepare result
+        recipeView.clearRecipe(); // cleaning up "middle box" before new result 
+        searchLoader(elements.recipe); //render 'loader' before show result
 
         // Create new object
         state.recipe = new Recipe(id);
@@ -97,7 +100,7 @@ const controlRecipe = async () =>
             await state.recipe.getRecipe();
             console.log(state.recipe.ingredients);
 
-            // Parse ingredients (conveting)
+            // Parse ingredients (converting)
             state.recipe.parseIngredients();
 
             // Calculate Serving and Time
@@ -105,7 +108,8 @@ const controlRecipe = async () =>
             state.recipe.calcServings();
 
             // show Result
-            console.log(state.recipe);
+            clearLoader();
+            recipeView.renderRecipe(state.recipe);
             
 
         }
