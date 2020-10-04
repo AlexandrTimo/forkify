@@ -14,7 +14,23 @@ export const clearResults = () =>
 {
     elements.searchResList.innerHTML = ''; // Udalenie info from result list
     elements.searchButtomPage.innerHTML = ''; // Udalenie buttons result list
-}
+};
+
+//**
+// videlenie i udalenie videlenia items (recipe)
+export const hightlightSelected = id => 
+{
+    const resArr = Array.from(document.querySelectorAll('.results__link'));
+
+    resArr.forEach(el => 
+        {
+            el.classList.remove('results__link--active');
+        });
+
+    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+
+
+};
 
 
 // Set limit words for title

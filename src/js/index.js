@@ -90,6 +90,9 @@ const controlRecipe = async () =>
         recipeView.clearRecipe(); // cleaning up "middle box" before new result 
         searchLoader(elements.recipe); //render 'loader' before show result
 
+        // Render Selector of recipe (highlight selected earch item)
+        if (state.search) searchView.hightlightSelected(id);
+
         // Create new object
         state.recipe = new Recipe(id);
 
