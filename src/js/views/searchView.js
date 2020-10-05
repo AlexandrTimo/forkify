@@ -27,7 +27,7 @@ export const hightlightSelected = id =>
             el.classList.remove('results__link--active');
         });
 
-    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active'); // Select id and make it 'active'
 
 
 };
