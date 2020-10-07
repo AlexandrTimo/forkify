@@ -17,7 +17,7 @@ import List from './models/List';
 * - Liked recipes
 */
 const state = {}; //current sostoyanie stroki zaprosov
-
+window.state = state;
 
 /**
  * SEARCH CONTROLLER 
@@ -152,11 +152,28 @@ window.addEventListener('load', controlRecipe); */
     
  };
 
+// Delete list
+
+elements.shopping.addEventListener('click', e =>
+{
+    const id = e.target.closest('.shopping__item').dataset.itemid;
+
+    // handle delete button
+    if (e.target.matches('.shopping__delete, .shopping__delete *'))
+    {
+        // Delete from  state (list)
+        state.list.deleteItem(id);
+        // Delete from UI (list)
+        listView.deleteList(id);
+    }
+});
+
+
+    //Update counter of ingredients
 
 
 
 
- 
 
 //Handling recipe button clicks
 elements.recipe.addEventListener('click', e =>

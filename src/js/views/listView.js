@@ -1,6 +1,6 @@
 import { elements } from './base';
 
-//added new list
+// Added new item into the list ****
 export const renderList = item =>
 {
     const markup = `
@@ -21,10 +21,13 @@ export const renderList = item =>
     elements.shopping.insertAdjacentHTML('beforeend', markup);
 };
 
-//delete list
+// Delete item from the list ****
 export const deleteList = id =>
 {
     const item = document.querySelector(`[data-itemid="${id}"]`);
 
-    item.parentElement.removeChild(item);
+    if (item) 
+    {
+        item.parentElement.removeChild(item);
+    }
 };
