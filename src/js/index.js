@@ -1,6 +1,7 @@
 import Search from './models/Search';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
+import * as listView from './views/listView';
 
 import { elements, searchLoader, clearLoader } from './views/base';
 import Recipe from './models/Recipe';
@@ -132,8 +133,32 @@ window.addEventListener('load', controlRecipe); */
 // easy way to get both events in one via 'forEach()'
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
 
-//Handling recipe button clicks
 
+/**
+ * LIST CONTROLLER 
+ */
+
+ const controlList = () =>
+ {
+    // Create new list if there is none yet
+    if (!state.list) state.list = new List();
+
+    // Add ingredients to shopping list and UI
+    state.recipe.ingredients.forEach(el => 
+    { 
+        const item = state.list.addItem (el.count, el.unit, el.ingredient); // Add info to the object
+        listView.renderList(item); // add to UI 
+    });
+    
+ };
+
+
+
+
+
+ 
+
+//Handling recipe button clicks
 elements.recipe.addEventListener('click', e =>
 {
     if (e.target.matches('.btn-decrease, .btn-decrease *')) // multiple action (ex.buttons) -- 'matches()'method  
@@ -151,11 +176,10 @@ elements.recipe.addEventListener('click', e =>
        state.recipe.updateServings('inc');
        recipeView.updateServingIngredients(state.recipe);
     }
+    else if (e.target.matches('.recipe__btn--shopping, .recipe__btn--shopping *'))
+    {
+        controlList();
+    }
 
     //console.log(state.recipe);
 });
-
-
-
-
-window.l = new List();

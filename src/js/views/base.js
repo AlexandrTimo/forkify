@@ -7,7 +7,8 @@ export const elements = {
     searchRes: document.querySelector('.results'), // parent element of left side of our web sait
     searchResList: document.querySelector('.results__list'), //left side (result)
     searchButtomPage: document.querySelector('.results__pages'), // button 'next' and 'prev'. left side (result)
-    recipe: document.querySelector('.recipe') // render full "recipe" on middle box  
+    recipe: document.querySelector('.recipe'), // render full "recipe" on middle box  
+    shopping: document.querySelector('.shopping__list'), // shopping list box  --> right box  
 };
 
 //**
