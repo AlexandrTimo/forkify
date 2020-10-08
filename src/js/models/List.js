@@ -29,6 +29,10 @@ export default class List {
 
     updateCount (id, newCount)
     {
-        this.items.find(el => el.id === id).count = newCount; // find 'element' in the List by 'id'
+        if (newCount > -1)
+        {
+            this.items.find(el => el.id === id).count = newCount; // find 'element' in the List by 'id'
+        }
     }
+        
 }
