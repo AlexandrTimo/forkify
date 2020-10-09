@@ -187,9 +187,14 @@ elements.shopping.addEventListener('click', e =>
  * LIKE CONTROLLER 
  */
 
+
+
 //FOR TESTING
 state.likes = new Likes();
 likeView.toggleLikeMenu(state.likes.getNumberOfLikes);
+
+
+
 
 const controlLikes = () =>
 {
@@ -211,8 +216,8 @@ const controlLikes = () =>
         // Toggle button 'love' - off
         likeView.toggleLikeBtn(true);
 
-        // Add like to the UI list
-            console.log(state.likes);
+        // Add likes recipe to the UI favor list
+        likeView.renderLike(newLike);
 
     }
     // User HAS liked current recipe
@@ -224,14 +229,17 @@ const controlLikes = () =>
         // Toggle button 'love' - on
         likeView.toggleLikeBtn(false);
 
-        // Remove like to the UI list
-        console.log(state.likes);
+        // Remove likes recipe from the UI favor list
+        likeView.deleteLike(currentID);
 
     };
     // Show love icon in like menu, if there is like recipe
     likeView.toggleLikeMenu(state.likes.getNumberOfLikes());
 
 };
+
+
+
 
 //Handling recipe button clicks
 elements.recipe.addEventListener('click', e =>

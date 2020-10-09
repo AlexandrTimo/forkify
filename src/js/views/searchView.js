@@ -27,7 +27,7 @@ export const hightlightSelected = id =>
             el.classList.remove('results__link--active');
         });
 
-    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active'); // Select id and make it 'active'
+    document.querySelector(`.results__link[href*="#${id}"]`).classList.add('results__link--active'); // Select id and make it 'active'
 
 
 };
@@ -41,7 +41,7 @@ export const hightlightSelected = id =>
 // acc: 15 / acc + cur.lentgth = 18 / arr = ['Pasta', 'with', 'spinach']
 // acc: 18 / acc + cur.lentgth = 24 / arr = ['Pasta', 'with', 'spinach'] 
 
-const limitRecipeTitle = (title, limit = 17) =>
+export const limitRecipeTitle = (title, limit = 17) =>
 {
     const arr = [];
     if (title.length > limit)

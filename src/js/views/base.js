@@ -8,8 +8,9 @@ export const elements = {
     searchResList: document.querySelector('.results__list'), //left side (result)
     searchButtomPage: document.querySelector('.results__pages'), // button 'next' and 'prev'. left side (result)
     recipe: document.querySelector('.recipe'), // render full "recipe" on middle box  
-    shopping: document.querySelector('.shopping__list'), // shopping list box  --> right box  
-    likesMenu: document.querySelector('.likes__field'), // Like box or favorite menu
+    shopping: document.querySelector('.shopping__list'), // shopping list box --> right box  
+    likesMenu: document.querySelector('.likes__field'), // Like box or favorite menu --> (only for 'love' icon)
+    likesList: document.querySelector('.likes__list'), // Like box --> list of favor recipe
 };
 
 //**
