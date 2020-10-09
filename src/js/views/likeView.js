@@ -8,3 +8,9 @@ export const toggleLikeBtn = (isLiked) => // Change love btn style if 'isLiked =
     document.querySelector('.recipe__love use').setAttribute('href', `img/icons.svg#icon-heart${iconString}`); 
 
 };
+
+export const toggleLikeMenu = numLikes =>
+{
+    // Show icon love or hidden
+    elements.likesMenu.style.visibility = numLikes > 0 ? 'visible' : 'hidden';
+}

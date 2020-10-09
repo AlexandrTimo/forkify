@@ -189,6 +189,7 @@ elements.shopping.addEventListener('click', e =>
 
 //FOR TESTING
 state.likes = new Likes();
+likeView.toggleLikeMenu(state.likes.getNumberOfLikes);
 
 const controlLikes = () =>
 {
@@ -227,6 +228,8 @@ const controlLikes = () =>
         console.log(state.likes);
 
     };
+    // Show love icon in like menu, if there is like recipe
+    likeView.toggleLikeMenu(state.likes.getNumberOfLikes());
 
 };
 
