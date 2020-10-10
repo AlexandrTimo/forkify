@@ -10,8 +10,6 @@ import List from './models/List';
 import Likes from './models/Like';
 
 
-
-
 /** Global controller
 * - Search object
 * - Current recipe object
@@ -19,7 +17,6 @@ import Likes from './models/Like';
 * - Liked recipes
 */
 const state = {}; //current sostoyanie stroki zaprosov
-window.state = state;
 
 /**
  * SEARCH CONTROLLER 
@@ -70,15 +67,10 @@ elements.searchButtomPage.addEventListener('click', e =>
     const btn = e.target.closest('.btn-inline'); // with method 'closest()' it help to find blizhyshee sovpadenie with class '.btn-inline'
     if (btn){
         const goToPage = parseInt(btn.dataset.goto, 10); // nahodim with help 'dataset' chemu rovna variable 'goto' + converting 'String' into 'Integer' 
-        console.log(goToPage); //test
         searchView.clearResults(); // clear results before show new info
         searchView.searchResults(state.search.recipes, goToPage); // new info with - 'goToPage' variable.
     }
-    
-    
 });
-
-
 
 
 /**
@@ -187,15 +179,6 @@ elements.shopping.addEventListener('click', e =>
  * LIKE CONTROLLER 
  */
 
-
-
-//FOR TESTING
-state.likes = new Likes();
-likeView.toggleLikeMenu(state.likes.getNumberOfLikes);
-
-
-
-
 const controlLikes = () =>
 {
     if (!state.likes) state.likes = new Likes();
@@ -235,10 +218,27 @@ const controlLikes = () =>
     };
     // Show love icon in like menu, if there is like recipe
     likeView.toggleLikeMenu(state.likes.getNumberOfLikes());
-
 };
 
+// Restore liked recipe on page load from local storage
+window.addEventListener('load', () =>
+{
+    // Create new object for favor recipe
+    state.likes = new Likes();
 
+    // Check and restore old object from localStorage
+    state.likes.readStorage();
+
+    // Check and restoring love - icon - btn
+    likeView.toggleLikeMenu(state.likes.getNumberOfLikes());
+
+    // Render existing likes
+    state.likes.likes.forEach(e =>
+    {
+         likeView.renderLike(e);
+    });
+
+});
 
 
 //Handling recipe button clicks

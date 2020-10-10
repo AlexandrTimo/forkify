@@ -13,18 +13,19 @@ const formatCount = count =>
     {
         // 2.5 --> 2 1/2
         // 0.5 --> 1/2
+        const newCount = Math.round(count * 1000) / 1000; // fixed the problem 33333/2111111
         const [int, dec] = count.toString().split('.').map(el => parseInt(el));
 
-        if (!dec) return count; // 5 --> 5
+        if (!dec) return newCount; // 5 --> 5
 
         if (int === 0) // Ex: 0.5 --> 1/2
         {
-            const fr = new Fraction(count);
+            const fr = new Fraction(newCount);
             return `${fr.numerator}/${fr.denominator}` // --> '1/2'
         }
         else 
         {
-            const fr = new Fraction(count - int);
+            const fr = new Fraction(newCount - int);
             return `${int} ${fr.numerator}/${fr.denominator}`; // --> '3 1/2'
         }
     }

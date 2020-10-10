@@ -18,6 +18,7 @@ export const toggleLikeMenu = numLikes =>
 
 export const renderLike = like =>
 {
+    // Render liked recipe into UI favor list 
     const markup = `
         <li>
             <a class="likes__link" href="#${like.id}">
@@ -37,6 +38,7 @@ export const renderLike = like =>
 
 export const deleteLike = id =>
 {
+    // Delete liked recipe into UI favor list 
     const el = document.querySelector(`.likes__link[href*="#${id}"]`).parentElement;
     if (el) el.parentElement.removeChild(el);
 }
