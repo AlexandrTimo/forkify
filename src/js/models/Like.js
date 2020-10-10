@@ -38,10 +38,13 @@ export default class Likes {
         return this.likes.length;
     }
 
+    // Add data to localStorage
     persistData ()
     {
         localStorage.setItem('Likes', JSON.stringify(this.likes));
     }
+
+    // Take data back to the object
     readStorage ()
     {
         const storage = JSON.parse(localStorage.getItem('Likes'));
